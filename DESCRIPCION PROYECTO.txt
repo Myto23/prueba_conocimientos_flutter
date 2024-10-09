@@ -1,0 +1,41 @@
+Descripción general:
+Este código es una aplicación móvil en Flutter que permite gestionar usuarios utilizando una base de datos local SQLite. Además, la aplicación proporciona opciones para agregar, eliminar y cargar usuarios desde una API externa.
+Estructura del código:
+Importaciones:
+1.	flutter/material.dart: Proporciona los widgets básicos de Flutter.
+2.	path_provider: Permite obtener directorios accesibles en el sistema de archivos.
+3.	sqflite: Proporciona el acceso a SQLite para manejo de la base de datos.
+4.	path: Permite trabajar con rutas de archivos.
+5.	dart:async: Para trabajar con funciones asincrónicas.
+6.	dart:convert: Para manejar la codificación y decodificación de datos, como JSON.
+7.	http: Para realizar peticiones HTTP.
+8.	intl: Para formatear fechas.
+9.	flutter_masked_text2: Para controlar la entrada de texto en campos con un formato específico.
+MyApp (Clase Principal):
+•	Propósito: Actúa como la raíz de la aplicación, configurando el tema y estableciendo la página de inicio como RegistroUsuario.
+RegistroUsuario (Pantalla principal):
+•	Propósito: Pantalla donde los usuarios pueden registrarse, visualizar usuarios existentes y cargar datos desde una API.
+•	Estados controlados:
+o	Datos de formulario: nombre, correo, fechaNacimiento, contrasena.
+o	Controlador de entrada con máscara para la fecha: _fechaNacimientoController.
+o	Lista de usuarios almacenados en la base de datos local: usuarios.
+o	Configuración de la paginación: rowsPerPage, currentPage.
+
+Métodos principales:
+1.	_initDatabase: Inicializa la base de datos SQLite, creando la tabla usuarios si no existe.
+2.	_guardarUsuario: Valida y guarda un nuevo usuario en la base de datos, asegurándose de que no exista un correo duplicado.
+3.	_cargarUsuarios: Carga los usuarios almacenados en la base de datos y los muestra en la tabla.
+4.	_eliminarUsuario: Elimina un usuario específico de la base de datos y actualiza la tabla.
+5.	_obtenerDesdeApi: Realiza una petición HTTP a la API randomuser.me, obtiene un usuario aleatorio, y lo guarda en la base de datos.
+6.	_confirmarEliminacion: Muestra un diálogo de confirmación antes de eliminar un usuario.
+Widgets principales:
+1.	Formulario de registro:
+o	Permite ingresar el nombre completo, correo, fecha de nacimiento y contraseña. Los campos tienen validaciones para asegurar que los datos sean correctos antes de ser enviados.
+2.	Tabla de usuarios:
+o	Muestra los usuarios almacenados en una tabla, donde cada celda es interactiva, permitiendo eliminar un usuario con una pulsación larga.
+3.	Paginación:
+o	Permite seleccionar el número de filas a mostrar por página y navegar entre las páginas de usuarios.
+Funcionalidades clave:
+•	Validación del formulario: Asegura que los campos de entrada sean correctos antes de registrar el usuario.
+•	Carga desde API: Integra la funcionalidad para cargar datos desde una API externa.
+•	Paginación dinámica: Permite ajustar la cantidad de usuarios mostrados por página y navegar entre páginas.
